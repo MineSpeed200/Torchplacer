@@ -1,0 +1,14 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/MineSpeed200/Torchplacer/issues" #optional
+
+[[mods]] 
+	modId="torchpl"
+	version="1.0.1" 
+	displayName="Torchplacer"
+	updateJSONURL="https://raw.githubusercontent.com/MineSpeed200/Torchplacer/master/torchup.json"
+	displayURL="https://minecraft.curseforge.com/projects/torchplacer" 
+	authors="Minespeed200" 
+	description='''
+A small mod that places Torches for you!
+'''
