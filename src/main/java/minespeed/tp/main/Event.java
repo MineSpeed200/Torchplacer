@@ -3,6 +3,7 @@ package minespeed.tp.main;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.apache.logging.log4j.Level;
 import org.apache.maven.artifact.versioning.ComparableVersion;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
@@ -52,27 +53,31 @@ public class Event {
 	public void onWorldTick(TickEvent.WorldTickEvent event) {
 		for (ServerPlayerEntity mp:activePlayers) {
 		BlockPos c = mp.getPosition();
-		float light = mp.getEntityWorld().getBrightness(new BlockPos(mp));
-		if(light<=0.15)
+		float light = mp.getEntityWorld().getLight(c);
+		Torchplacer.LOGGER.log(Level.DEBUG,"First Light Level:"+light+" Side:");
+		if(light<8) {
+			Torchplacer.LOGGER.log(Level.DEBUG,"Light Level:"+light);
+
 			if(!mp.isInWater()&&!mp.isInLava()) {
-			if(mp.inventory.hasItemStack(new ItemStack(Blocks.TORCH))){
-				int x=Math.round(c.getX());
-				int y=Math.round(c.getY());
-				int z=Math.round(c.getZ());
-				if(!Block.func_220055_a(mp.world,new BlockPos(x, y, z),Direction.DOWN)&&mp.world.getFluidState(new BlockPos(x,y,z)).isEmpty()&&Block.func_220055_a(mp.world,new BlockPos(x, y-1, z),Direction.DOWN)&&mp.getEntityWorld().getBlockState(new BlockPos(x, y, z))!=Blocks.TORCH.getDefaultState()) {
-				mp.getEntityWorld().setBlockState(new BlockPos(x, y, z), Blocks.TORCH.getDefaultState());
-				int index =getTorchStackSlot(mp.inventory);
-				if(index==-1) {
-					if(mp.getHeldItemOffhand().isItemEqual(new ItemStack(Blocks.TORCH)))
-							mp.getHeldItemOffhand().setCount(mp.getHeldItemOffhand().getCount()-1);
-				}else {
-					mp.inventory.decrStackSize(index, 1);
-					 
+				if(mp.inventory.hasItemStack(new ItemStack(Blocks.TORCH))){
+					int x=Math.round(c.getX());
+					int y=Math.round(c.getY());
+					int z=Math.round(c.getZ());
+					if(!Block.func_220055_a(mp.world,new BlockPos(x, y, z),Direction.DOWN)&&mp.world.getFluidState(new BlockPos(x,y,z)).isEmpty()&&Block.func_220055_a(mp.world,new BlockPos(x, y-1, z),Direction.DOWN)&&mp.getEntityWorld().getBlockState(new BlockPos(x, y, z))!=Blocks.TORCH.getDefaultState()) {
+					mp.getEntityWorld().setBlockState(new BlockPos(x, y, z), Blocks.TORCH.getDefaultState());
+					int index =getTorchStackSlot(mp.inventory);
+					if(index==-1) {
+						if(mp.getHeldItemOffhand().isItemEqual(new ItemStack(Blocks.TORCH)))
+								mp.getHeldItemOffhand().setCount(mp.getHeldItemOffhand().getCount()-1);
+					}else {
+						mp.inventory.decrStackSize(index, 1);
+						 
+					}
+					}
+				
 				}
-				}
-			
 			}
-			}
+		}
 		}
 		}
 	
