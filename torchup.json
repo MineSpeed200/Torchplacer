@@ -1,8 +1,19 @@
 {
   "homepage": "http://files.minecraftforge.net/maven/net/minecraftforge/forge/",
   "promos": {
-   "1.15":"1.0.0",
+   "1.15-latest":"1.0.0",
+   "1.15-recomended":"1.0.0",
    "1.14.4-latest":"1.0.1",
-   "1.13.2":"1.0.1"
+   "1.14.4-recomended":"1.0.1",
+   "1.13.2-latest":"1.0.1",
+   "1.13.2-recomended":"1.0.1"
+  },
+  "1.15":{
+  },
+  "1.14.4":{
+   "1.0.1":"Fixed issue that caused servers to crash"
+  },
+  "1.13.2":{
+    "1.0.1":"Fixed issue that caused servers to crash"
   }
 }
