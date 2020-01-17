@@ -1,12 +1,12 @@
 {
   "homepage": "https://www.curseforge.com/minecraft/mc-mods/torchplacer",
   "promos": {
-   "1.15-latest":"1.0.0",
    "1.15-recomended":"1.0.0",
-   "1.14.4-latest":"1.0.1",
+   "1.15-latest":"1.0.0",
    "1.14.4-recomended":"1.0.1",
-   "1.13.2-latest":"1.0.1",
-   "1.13.2-recomended":"1.0.1"
+   "1.14.4-latest":"1.0.1",
+   "1.13.2-recomended":"1.0.1",
+   "1.13.2-latest":"1.0.1"
   },
   "1.15":{
     "1.0.0":"Update to 1.15"
